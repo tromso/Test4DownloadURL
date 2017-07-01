@@ -1,6 +1,9 @@
 package com.company;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -10,19 +13,16 @@ import java.nio.file.StandardCopyOption;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        char[] letters = "fuck".toCharArray();
-        System.out.println(letters[0]);
+        Path targetFile = Paths.get("files","a.txt");
+        String url = "http://www.smileowl.com/val";
 
-        Path sourceFile = Paths.get("files","a.txt");
-        Path targetFile = Paths.get("files","b.txt");
-
-        try {
-            Files.copy(sourceFile,targetFile, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
+        URL website = new URL(url);
+        try (InputStream in = website.openStream()) {
+            Files.copy(in, targetFile, StandardCopyOption.REPLACE_EXISTING);
         }
+
 
 
     }

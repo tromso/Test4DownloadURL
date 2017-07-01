@@ -1,1 +1,232 @@
-my name jeff
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+  <TITLE>How to Value Private Businesses and Stocks | AnalyzeValue.com</TITLE>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<link rel="stylesheet" href="ext.css" />
+<script type="text/javascript" src="ext.js"></script>
+  <link rel="canonical" href="http://analyzevalue.com/" />
+</HEAD>
+
+<BODY>
+  <!-- Nav Bar -->
+
+  <div class="row">
+    
+
+<ul id="sddm">
+  <li><a href="#ibv" onmouseover="mopen('m2')" onmouseout="mclosetime()">Asset Based Valuation</a>
+    <div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+    </div>
+  </li>
+  <li><a href="#dcf" onmouseover="mopen('m3')" onmouseout="mclosetime()">Discounted Cash Flow DCF</a>
+    <div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+    </div>
+  </li>
+  <li><a href="#rvm" onmouseover="mopen('m4')" onmouseout="mclosetime()">Relative Valuation and Multiples</a>
+    <div id="m4" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+    </div>
+  </li>
+  
+  
+  <li><a href="#rem" onmouseover="mopen('m5')" onmouseout="mclosetime()">Residual Earnings Model</a>
+    <div id="m5" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+    </div>
+  </li>
+  <li><a href="#dft" onmouseover="mopen('m6')" onmouseout="mclosetime()">Discount Factor</a>
+    <div id="m6" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+    <a href="#wc">WACC</a>
+    <a href="#wc">CAPM</a>
+    </div>
+  </li>
+  <li><a href="#pbva" onmouseover="mopen('m7')" onmouseout="mclosetime()">Private Business Valuation</a>
+    <div id="m7" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+    </div>
+  </li>
+</ul>
+<br><br><br>
+    <h1>AnalyzeValue <small>How to value stocks and private businesses.</small></h1>  
+
+  </div>
+
+  <!-- End Nav -->
+ 
+  <div class="row">
+
+
+      <article>
+
+
+      <hr />
+	<div class="efields">
+
+<FORM>
+<H2>Calculate the value of a business using the tool below.</H2>
+<!--<a href="index.html#wc">section one</a>-->
+
+<h5>Select how many years you'd like to enter earnings for, enter the value of assets, the discount factor, and the rate with which you assume the residual earnings will grow each year for all eternity.</h5>
+<select id='drop' name='down'>
+  <option>0</option>
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+</select>
+<INPUT TYPE="Button" Value="Extra years" onClick="showDaT(this.form)">
+
+<div class="bvearnings">
+  <ul>
+    <li><label>Assets</label> 
+    <INPUT TYPE="TEXT" NAME="BV" value="100"></li>
+    <li><label>Discount factor</label>
+    <INPUT TYPE="TEXT" NAME="ro" id="ro" value="1.12"></li>  
+    <li><label>Growth terminal value</label>
+    <INPUT TYPE="TEXT" NAME="g" id="g" value="1.03"></li>
+ </ul><br>
+  <h5>Add the yearly earnings.</h5>
+ <ul><li><label>Year 1</label>
+    <INPUT TYPE="TEXT" NAME="e1" id="e1" value="10"></li>
+
+      <li><label id="spe2">Year 2</label>
+      <INPUT TYPE="TEXT" NAME="e2" id="e2" value="0"></li>
+
+        <li><label id="spe3">Year 3</label>
+        <INPUT TYPE="TEXT" NAME="e3" id="e3" value="0"></li>
+
+          <li><label id="spe4">Year 4</label>
+          <INPUT TYPE="TEXT" NAME="e4" id="e4" value="0"></li>
+
+            <li><label id="spe5">Year 5</label>
+            <INPUT TYPE="TEXT" NAME="e5" id="e5" value="0"></li>
+ </ul><br>
+
+<INPUT TYPE="Button" Value="Calculate Value" onClick="abc(this.form)">
+  </div>
+	
+
+</FORM>
+</div>
+<div id="fieldtable">
+<table class="tftable" border="1">
+  <br>
+<tr><th><div id="df"></th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th></tr>
+<tr><td> Assets</td><td> <div id="assets"></td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td> Earnings</td><td> <div id="bea1"></div></td><td> <div id="bea2"></div></td><td> <div id="bea3"></div></td><td> <div id="bea4"></div></td><td><div id="bea5"></div>	</td></tr>
+<tr><td> Residual earnings (Earnings - Discount Factor x Assets)</td><td> <div id="ReOI1"></div>	</td><td><div id="ReOI2"></div></td><td><div id="ReOI3"></div>	 </td><td><div id="ReOI4"></div></td><td> <div id="ReOI5"></div></td></tr>
+<tr><td> Discounted residual earnings</td><td> <div id="dReOI1"></div>	</td><td><div id="dReOI2"> </td><td><div id="dReOI3"> </td><td><div id="dReOI4"></td><td> <div id="dReOI5"></td></tr>
+<tr><td> Total discounted residual earnings</td><td><div id="tReOI">  </td><td></td><td> </td><td></td><td> </td></tr>
+<tr><td> Terminal value</td><td><div id="ter">  </td><td></td><td> </td><td></td><td> </td></tr>
+<tr><td> <b>Total value of business<b><br> (Assets + Discounted residual earnings + Terminal value) </td><td><b><div id="totalvalue"><b>  </td><td></td><td> </td><td></td><td> </td>
+<tr><td> Price/Earnings</td><td> <div id="pe"> </td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td> Price/Book value</td><td> <div id="pbv"></td><td> </td><td> </td><td></td><td></td></tr>
+<tr><td> Return on Assets</td><td> <div id="roa1"> </td><td> <div id="roa2"> </td><td><div id="roa3"> </td><td><div id="roa4"> </td><td> <div id="roa5"></td></tr></tr>
+</table>
+</div>
+<hr />
+<p>For many, finding the value of a business seems like a very complicated task that should be left only to the experts. Below I will show it can be done in a very simple way without compromising the result. There are a few ways you can value a business and some methods are preferred in certain situations.</p> 
+
+<h2 id="ibv">Asset based valuation.</h2>
+<hr />
+<p>One method is valuing the business by the sum of its parts - asset based valuation. However most business aren't just the sum of their parts but much more. Just think of the special relationships a firm has with its customers, with its suppliers, its know-how, the brand name, the research and development it has in progress. All these intangibles have value but cannot be easily quantified or sold. There is no clear, easy to be observed market value for them.</p> 
+
+<h2 id="dcf">What is the discounted cash flow model and why is it not good?</h2>
+<hr />
+<p>  Another method, and probably the most well known, is the "discounted cash flow - DCF" model. The value of a business is the sum of all the money it will obtain in the future discounted to the present value - because we prefer having money now rather than in the future, so the money from the future has a slightly smaller price today. The cash-flows, simplistically can be seen as profits though it is not technically correct; they're the money that is available at the end of the year. To get the cash flows we take the sales each period and substract the total expenses incurred.</P>
+<p> Can we get the sales from all the years in the future? How many periods should we get? What happens if for the 5 periods we have the cash flows are abnormally high or low? Or even worse yet, when we only have negative cash flows. Obviously an accurate valuation in these cases would be compromised. To deal with an infinite amount of periods we take a few cash flows we can observe and we project the rest with a terminal value which is based on a cash flow that grows (or declines) with a growth rate we estimate. So the final value stems from two components: the finite-period cash flows we observe (or estimate) and the terminal value. Think of the terminal value as the value we would put to a constant stream of cash that grows each year by say 3 percent.</p>
+<p> The problem with this approach is that a large part of our valuation is speculative. The part we calculate based on what we know with certainty -the cash flows we have - is just a small percentage of the final value and the rest, maybe as much as 90%, comes from a terminal value which rests heavily on our assumptions. Another problem is the quality of the cash flows. A company which is investing a lot in expanding its business would have small cash flows and would appear less valuable than a company that extracts all the cash out of its sales. So a company that doesn't reinvest the profits can in the short term seem to be worth more than a company that is expanding, investing perhaps in research and development or in new stores, which would generate more sales and profits in the future. Another pitfall are companies that shift profits from one period to the next. Companies have been known to apply some unorthodox accounting tricks just to fool investors their cash flows are on a growing trend. However this strategy is good only for so long before it becomes evident that the growth is not sustainable and the profits were artificially pumped up for show. Nonetheless shifting cash flows between periods can fool financial models which rely heavily on valuing just cash flows.  
+</p>
+
+<h2 id="rvm">What is relative valuation and multiples?</h2>
+<hr />
+<p>
+One valuation method you really cannot do without is called "multiples" or "relative valuation". It just computes ratios of important metrics; for example price per earnings which takes the price of the whole business (for stocks this would be either the market capitalization per net income, or share price divided by earnings per share) and divides it by the earnings it received in the last period. Historically companies on the stock marked have had a price per earnings (P/E) average between 15-16. Everything else equal a company with a P/E ratio of 20 is more expensive than a company with a P/E of 15. A higher P/E can be interpreted as either the company is overpriced or it is expected it will grow its earnings with time, meaning the P/E will decrease in the future as E increases. </p> <p>Other useful multiples are: Price per Sales, Price per Book Value, Entreprise Value/Sales, Return on Assets, Return on Equity, Operating Margin, and Net Margin. Let's look at them one at a time. The Price per Sales is useful especially for companies that are not yet profitable - companies that have negative earnings. The Price per Book Value gives the price of the company divided by the price with which the firm's assets appear in its balance sheet. Usually the Book Value reflects the assets purchase price minus the depreciation and amortization already incurred. On the balance sheet the book value is the total value of its assets less its liabilities. The Enterprise Value gives the sum of the shareholder's equity plus the company's debt minus the cash it has. The advantage of using the Enterprise Value when doing valuation is that it neutralizes the leverage effect. A highly leveraged company borrows money to purchase its assets and if it turns a profit that profit is multiplied by the leverage effect. However a leveraged company is also more risky because the losses can be boosted into even bigger losses by the leverage effect up to the point it becomes insolvent (equity < debt). So a company with high leverage can have bigger earnings but also be riskier, therefore its higher earnings shouldn't be compared  one to one with unleveraged companies' earnings. This is why we use the entreprise value, to level the playing field. Lastly Gross Profit Margin is (Sales - Cost of Goods Sold)/Sales, Profit margin is Net Income/Sales, Return on Assets is Net Income/Total Assets, and Return on Equity is Net Income/Shareholders' Equity. </p> 
+<p>The big advantage of the relative valuation is its simplicity. It is not much effort to divide the price by the earnings. While multiples and ratios are very important to examine they usually only give insight in relation with other companies or assets. It is useful to determine that one firm is cheaper than another or that its profit margin is 15 percent versus only 10 percent but this method doesn't explicitly tell us how much we should pay to own the company. </p>
+
+<h2 id="rem">How does the residual earnings model work?</h2>
+<hr />
+<p>
+Where do we go from here? The solution that avoids many of the issues mentioned here is the "residual income" model. It starts with the Net Operating Assets(NOA) and it adds to it the Residual Operating Income(ReOI) and a Terminal Value. The Net Operating Assets are the assets the company produces money with. You could also use instead the Book value (BV). The residual operating income is income that is generated in surplus of normal income, i.e. income that is generated in excess of what you would expect from a company in a normal competition setting that doesn't have much competitive advantage. In math form: ReOI = OI - df x NOA. Where df is the discount factor or the normal return a company in perfect competition would be getting. You could look at the discount factor as the interest rate plus a risk factor. In essence the discount factor is the minimum amount that compensates the business owner for doing business. Say a person invests 100$ in a business and requires 12$ at the end of the period or else he'd be better off keeping his 100$ in the bank. In this case the discount factor is 12/100 = 0.12. So for a business owner df x NOA is his normal return, the return needed for him to want to continue his business. Anything on top of that is just extra.</p>
+<p> In the residual income model, the income the business earns in excess of the normal return is the only thing that actually increases the valuation of the business. If the business owner would invest an extra 10$ to his existing 100$ business, but the extra 10$ would generate just an extra 1.2$ per year in income, then the worth of his business would increase just by the 10$ invested because the NOA is increasing by 10$. However even though the earnings have increased from 12$ to 13.2$ the new 10$ investment doesn't add value because the residual earnings of the project are 0. ReOI = OI - df x NOA (13.2 - 0.12 x 110 = 0). The terminal value is calculated by taking the residual earnings in the most recent period and dividing it by the discount factor minus the growth rate. This will give the sum of all future residual earnings discounted to the present assuming a perpetual growth rate g. The advantage of this model is that it bases a lot of weight on things we know and it has less reliance on projections of future earnings. A big part of the valuation comes from the NOA (or book value). Moreover we are not fooled by earnings increases that don't add value. </p>
+
+<h2 id="dft">How to find the discount factor?</h2>
+<hr />
+<p>
+The discount factor is the trade off we have between keeping the money in the bank or investing in the business. In order for the investment to make sense we would need to get a return that compensates us for not getting the interest rate on the money we'd get from the bank but also for taking on a bigger risk of losing the money. So the discount factor is composed of two big factors the safe interest rate the riskiness of the project. The riskier the business the bigger the discount factor. Typically you'd want to set the discount factor somewhere between 5 and 15 percent. A firm that has strongly fluctuating profits will have a higher risk.</p>
+<p> Unfortunatelly there is no clear way to calculate the cost of capital so setting the discount factor will be based on intuition and experience. However if you have already put a value on the cost of equity capital determining the cost of finance the whole company is easy using the weighted average cost of capital (WACC) formula. WACC = (E/V) * Re + (D/V) * Rd where E is the total value of equity, V is the total value of the firm, D is the total value of debt the company has, Re is the cost of equity capital (we call it discount factor for equity), and Rd is the interest cost of debt.</p>
+<p> In corporate finance books, the discount factor for equity is obtained with the Capital Asset Pricing Model CAPM. The formula being: Ra = Rf + b(Rm - Rf) where Ra is the cost of equity capital or the return on equity. Since the CAPM assumes the market is efficient and there are no residual earnings, Ra is the discount factor for equity. Rf is the safe interest rate basically the interest rate you'd get if you keep your money in the bank or in some riskless bonds. b is beta which measures how volatile the company is compared with the overall market and Rm is the market return. The beta though is not a very reliable measure for the riskiness of the company. A company can have profits that are perfectly correlated with the market for five years and still be risky and fail in the sixth year. Plus the CAPM assumption that the markets are efficient and no company earns excess returns is very unrealistic. If the market was perfect at valuing companies we wouldn't bother learning finance in the first place. And if everybody takes the market prices as given then who sets the original valuation. You can calculate the WACC below with your own parameters. </p>
+
+  <div id="wc">
+<FORM>
+
+<div id="capm">
+<h4>CAPM</h4>
+<ul>
+    <li><label>Risk free interest rate</label>
+<input type="text" class="pen" name="isafe" value="0.05"></li>
+    <li><label>Beta</label>
+<input type="text" class="pen" name="beta" value="1.5"></li>
+   <li><label>Market return rate</label>
+<input type="text" class="pen" name="rmarket" value="0.11"></li>
+</ul>
+<INPUT TYPE="Button" Value="Calculate CAPM" onClick="capm(this.form)">
+  <div id="divcapm">
+  </div>
+  </div>
+
+  <div id="wacc">
+<h4>WACC</h4>
+<ul>
+	<li><label>Total Value Equity</label>
+<input type="text" class="pen" name="equity" value="140"></li>
+  <li><label>Total Value Debt</label>
+<input type="text" class="pen" name="debt" value="60"></li>
+    <li><label>Interest Rate for Debt</label>
+<input type="text" class="pen" name="idebt" value="0.06"></li>
+    <li><label>Discount factor for Equity</label>
+<input type="text" class="pen" name="icap" value="0.12"></li>
+</ul>
+<INPUT TYPE="Button" name="waccyo" Value="Calculate WACC" onClick="wacc(this.form)">
+  <div id="divwacc">
+	</div>
+  </div>
+
+
+</FORM>
+</div>
+<br>
+<h2 id="pbva">How to find the value of a private business?</h2>
+<hr />
+<p>
+So how do we go about calculating the value of a private business? Not much different. We add the value of the assets in the first field and then we add the profits we know from the previous periods or if we feel confident we can make projections about future earnings and add them in the earnings fields. The more periods we have the better because it helps stabilize the earnings trend. It prevents big outliers messing with our sample so if you have 5 year earnings it's harder for their values to be accidental, you can have an exceptionally good year but less likely to have five.</p>
+<p> Let's try a simple example, see table below. Say we have a company with assets of $40,000 and yearly sales of $70,000 in year 1, $60,000 in year 2, $78,000 in year 3, $90,000 in year 4, and $80,000 in year 5. Assume costs of: $71,000 in year 1, $65,000 in year 2, $68,000 in year 3, $70,000 in year 4, and $72,000 in year 5. This implies earnings of: $-1000 in year 1, $-5,000 in year 2, $10,000 in year 3, $20,000 in year 4, and $8,000 in year 5. If we use a discount factor of 12 percent (0.12) and a yearly growth rate of 3 percent (0.03) we get residual earnings of: $-5,800 in year 1, $-9,800 in year 2, $5,200 in year 3, $15,200 in year 4, and $3,200 in year 5. The terminal value is calculated as (ReOI * g)/(df-g), for out examples this is: ($3,200 * 1.03)/(1.12 - 1.03), where $3,200 is the residual earning in year 5.</p>
+<p> The earnings in year 5 are very important because it's the value with which we calculate the terminal value. If we use less periods the value used to calculate the continous value is the last one so perhaps it's best to use a projected value for the last period that is in line with the average and the trend of the last years. These numbers give us a total company valuation of $65,722.
+</p>
+
+
+
+<table class="tftable" border="1">
+<tr><th>Discount factor = 12%, Growth rate = 3%</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th></tr>
+<tr><td> Assets</td><td> $40,000</td><td> </td><td> </td><td> </td><td> </td></tr>
+<tr><td> Sales</td><td> $70,000</td><td> $60,000</td><td> $78,000</td><td> $90,000</td><td>$80,000 </td></tr>
+<tr><td> Total Costs</td><td> $71,000</td><td>$65,000 </td><td>$68,000 </td><td>$70,000 </td><td> $72,000</td></tr>
+<tr><td> Earnings (Sales-Costs)</td><td> $-1,000</td><td>$-5,000 </td><td>$10,000 </td><td>$20,000 </td><td> $8,000</td></tr>
+<tr><td> Residual Earnings (Earnings - Discount factor x Assets)</td><td>$-5,800  </td><td>$-9,800 </td><td> $5,200</td><td>$15,200 </td><td>$3,200 </td></tr>
+<tr><td> Total discounted residual earnings</td><td>$2,448</td><td></td><td> </td><td></td><td> </td></tr>
+<tr><td> Terminal value</td><td>23274</td><td></td><td> </td><td></td><td> </td></tr>
+<tr><td> <b>Total value of business<b><br> (Assets + Discounted residual earnings + Terminal value) </td><td><b>$65,722.21<b>  </td><td></td><td> </td><td></td><td> </td></tr>
+</table>
+
+
+
+
+</div>
+</article>
+
+
+	
+
+</BODY>
+</HTML>
+
